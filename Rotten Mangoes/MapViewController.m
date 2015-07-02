@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) BOOL setInitialLocation;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) NSMutableArray *theatresArray;
 
 @end
 
@@ -170,6 +171,7 @@
                 
                 marker.coordinate = CLLocationCoordinate2DMake([theatreDict[@"lat"] doubleValue], [theatreDict[@"lng"] doubleValue]);
                 marker.title = theatreDict[@"name"];
+                [self.theatresArray addObject:marker.title];
                 marker.subtitle = theatreDict[@"address"];
                 
                 [theatresArray addObject:marker];
@@ -186,6 +188,14 @@
     
     [task resume];
     
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressCell" forIndexPath:indexPath];
+    NSString *theatreName = self.theatresArray[indexPath.row];
+    cell.textLabel.text = theatreName;
+    
+    return cell;
     
 }
 

@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -254,24 +255,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spc-EF-UoO">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="220"/>
                                 <connections>
                                     <outlet property="delegate" destination="sZZ-Rz-GP3" id="gL0-Q0-OuJ"/>
                                 </connections>
                             </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="o5b-T1-zz2">
+                                <rect key="frame" x="0.0" y="284" width="320" height="284"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressCell" id="bJG-Wv-JpX">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bJG-Wv-JpX" id="Ieg-0d-Dxj">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="tfQ-DY-5Eg" firstAttribute="top" secondItem="Spc-EF-UoO" secondAttribute="bottom" multiplier="2" id="9Ak-Xa-H26"/>
+                            <constraint firstItem="o5b-T1-zz2" firstAttribute="leading" secondItem="uMs-f5-Ec4" secondAttribute="leading" id="AZI-Ax-6Td"/>
+                            <constraint firstItem="o5b-T1-zz2" firstAttribute="top" secondItem="Spc-EF-UoO" secondAttribute="bottom" id="QXo-xw-AsR"/>
                             <constraint firstItem="Spc-EF-UoO" firstAttribute="leading" secondItem="uMs-f5-Ec4" secondAttribute="leading" id="aNc-5K-QAV"/>
                             <constraint firstAttribute="trailing" secondItem="Spc-EF-UoO" secondAttribute="trailing" id="c75-6k-kKH"/>
                             <constraint firstItem="Spc-EF-UoO" firstAttribute="top" secondItem="j9U-3e-FLc" secondAttribute="bottom" id="paz-Oq-2lp"/>
-                            <constraint firstItem="tfQ-DY-5Eg" firstAttribute="top" secondItem="Spc-EF-UoO" secondAttribute="bottom" id="zvq-ez-Lir"/>
+                            <constraint firstAttribute="trailing" secondItem="o5b-T1-zz2" secondAttribute="trailing" id="wVO-3T-fpo"/>
+                            <constraint firstItem="tfQ-DY-5Eg" firstAttribute="top" secondItem="o5b-T1-zz2" secondAttribute="bottom" id="xhf-Fd-J0w"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="etV-Kp-RYt"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mapView" destination="Spc-EF-UoO" id="Zmq-KQ-58i"/>
+                        <outlet property="tableView" destination="o5b-T1-zz2" id="V0O-Qe-grR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HeQ-VT-vZc" userLabel="First Responder" sceneMemberID="firstResponder"/>

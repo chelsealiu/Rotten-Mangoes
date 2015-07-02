@@ -17,4 +17,7 @@
 
 @property (strong, nonatomic) NSString *zipCode;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
 @end
