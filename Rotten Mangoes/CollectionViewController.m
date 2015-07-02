@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=[api key]&page_limit=50";
+    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=[API KEY]&page_limit=50";
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *jsonError) {
@@ -45,7 +45,7 @@
                 Movies *newMovie = [[Movies alloc] init];
                 newMovie.title = movieDict[@"title"];
                 NSString *APIpart1 = [NSString stringWithFormat:@"%@", movieDict[@"links"][@"reviews"]];
-                newMovie.reviewsAPI = [APIpart1 stringByAppendingString:@"?apikey=[api key]"];
+                newMovie.reviewsAPI = [APIpart1 stringByAppendingString:@"?apikey=[API KEY]"];
                 newMovie.movieIcon = movieDict[@"posters"][@"thumbnail"]; //string links to thumbnail
                 newMovie.movieSynopsis = movieDict[@"synopsis"];
                 newMovie.criticsScore = movieDict[@"ratings"][@"critics_score"];

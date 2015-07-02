@@ -137,12 +137,14 @@
     self.movieTitleLabel.text = self.detailItem.title;
     self.freshLabel.text = review.freshnessOfReview;
 
-    if ([review.freshnessOfReview isEqualToString:@"CERTIFIED FRESH"]) {
+    if ([review.freshnessOfReview isEqualToString:@"FRESH"]) {
         self.freshLabel.textColor = [UIColor greenColor];
         self.scoreLabel.textColor = [UIColor greenColor];
+        self.freshLabel.backgroundColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
     } else {
         self.freshLabel.textColor = [UIColor redColor];
         self.scoreLabel.textColor = [UIColor redColor];
+        self.freshLabel.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.5];
     }
     
     
@@ -176,7 +178,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 450;
+    return 250;
 //    return UITableViewAutomaticDimension;
     //should set dynamically
 }
