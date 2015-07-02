@@ -1,15 +1,13 @@
 //
-//  MasterViewController.h
+//  CustomCell.m
 //  Rotten Mangoes
 //
 //  Created by Chelsea Liu on 7/1/15.
 //  Copyright (c) 2015 Chelsea Liu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CustomCell.h"
 
-@interface MasterViewController : UITableViewController
-
+@implementation CustomCell
 
 @end
-

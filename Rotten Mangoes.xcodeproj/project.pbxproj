@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		5E6B042C1B443CB300AAA2FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B042B1B443CB300AAA2FE /* main.m */; };
 		5E6B042F1B443CB300AAA2FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B042E1B443CB300AAA2FE /* AppDelegate.m */; };
-		5E6B04321B443CB300AAA2FE /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04311B443CB300AAA2FE /* MasterViewController.m */; };
-		5E6B04351B443CB300AAA2FE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04341B443CB300AAA2FE /* DetailViewController.m */; };
 		5E6B04381B443CB300AAA2FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B04361B443CB300AAA2FE /* Main.storyboard */; };
 		5E6B043A1B443CB300AAA2FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B04391B443CB300AAA2FE /* Images.xcassets */; };
 		5E6B043D1B443CB300AAA2FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B043B1B443CB300AAA2FE /* LaunchScreen.xib */; };
 		5E6B04491B443CB300AAA2FE /* Rotten_MangoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04481B443CB300AAA2FE /* Rotten_MangoesTests.m */; };
+		5E6B04541B44411800AAA2FE /* Movies.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04531B44411800AAA2FE /* Movies.m */; };
+		5E6B04571B44530600AAA2FE /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04561B44530600AAA2FE /* CollectionViewController.m */; };
+		5E6B045A1B44559500AAA2FE /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04591B44559500AAA2FE /* CustomCell.m */; };
+		5E6B04601B44722100AAA2FE /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B045F1B44722100AAA2FE /* DetailTableViewController.m */; };
+		5E6B04631B44870400AAA2FE /* Reviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04621B44870400AAA2FE /* Reviews.m */; };
+		5E6B04661B448B8100AAA2FE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04651B448B8100AAA2FE /* TableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,16 +37,24 @@
 		5E6B042B1B443CB300AAA2FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5E6B042D1B443CB300AAA2FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5E6B042E1B443CB300AAA2FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5E6B04301B443CB300AAA2FE /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		5E6B04311B443CB300AAA2FE /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		5E6B04331B443CB300AAA2FE /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		5E6B04341B443CB300AAA2FE /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		5E6B04371B443CB300AAA2FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E6B04391B443CB300AAA2FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5E6B043C1B443CB300AAA2FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5E6B04421B443CB300AAA2FE /* Rotten MangoesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rotten MangoesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6B04471B443CB300AAA2FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6B04481B443CB300AAA2FE /* Rotten_MangoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rotten_MangoesTests.m; sourceTree = "<group>"; };
+		5E6B04521B44411800AAA2FE /* Movies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movies.h; sourceTree = "<group>"; };
+		5E6B04531B44411800AAA2FE /* Movies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movies.m; sourceTree = "<group>"; };
+		5E6B04551B44530600AAA2FE /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		5E6B04561B44530600AAA2FE /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		5E6B04581B44559500AAA2FE /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		5E6B04591B44559500AAA2FE /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		5E6B045E1B44722100AAA2FE /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
+		5E6B045F1B44722100AAA2FE /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
+		5E6B04611B44870400AAA2FE /* Reviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reviews.h; sourceTree = "<group>"; };
+		5E6B04621B44870400AAA2FE /* Reviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reviews.m; sourceTree = "<group>"; };
+		5E6B04641B448B8100AAA2FE /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		5E6B04651B448B8100AAA2FE /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,11 +98,19 @@
 			children = (
 				5E6B042D1B443CB300AAA2FE /* AppDelegate.h */,
 				5E6B042E1B443CB300AAA2FE /* AppDelegate.m */,
-				5E6B04301B443CB300AAA2FE /* MasterViewController.h */,
-				5E6B04311B443CB300AAA2FE /* MasterViewController.m */,
-				5E6B04331B443CB300AAA2FE /* DetailViewController.h */,
-				5E6B04341B443CB300AAA2FE /* DetailViewController.m */,
+				5E6B04581B44559500AAA2FE /* CustomCell.h */,
+				5E6B04591B44559500AAA2FE /* CustomCell.m */,
+				5E6B04551B44530600AAA2FE /* CollectionViewController.h */,
+				5E6B04561B44530600AAA2FE /* CollectionViewController.m */,
+				5E6B045E1B44722100AAA2FE /* DetailTableViewController.h */,
+				5E6B045F1B44722100AAA2FE /* DetailTableViewController.m */,
+				5E6B04611B44870400AAA2FE /* Reviews.h */,
+				5E6B04621B44870400AAA2FE /* Reviews.m */,
+				5E6B04521B44411800AAA2FE /* Movies.h */,
+				5E6B04531B44411800AAA2FE /* Movies.m */,
 				5E6B04361B443CB300AAA2FE /* Main.storyboard */,
+				5E6B04641B448B8100AAA2FE /* TableViewCell.h */,
+				5E6B04651B448B8100AAA2FE /* TableViewCell.m */,
 				5E6B04391B443CB300AAA2FE /* Images.xcassets */,
 				5E6B043B1B443CB300AAA2FE /* LaunchScreen.xib */,
 				5E6B04291B443CB300AAA2FE /* Supporting Files */,
@@ -224,10 +244,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E6B04601B44722100AAA2FE /* DetailTableViewController.m in Sources */,
+				5E6B04631B44870400AAA2FE /* Reviews.m in Sources */,
 				5E6B042F1B443CB300AAA2FE /* AppDelegate.m in Sources */,
-				5E6B04321B443CB300AAA2FE /* MasterViewController.m in Sources */,
+				5E6B04571B44530600AAA2FE /* CollectionViewController.m in Sources */,
+				5E6B045A1B44559500AAA2FE /* CustomCell.m in Sources */,
+				5E6B04661B448B8100AAA2FE /* TableViewCell.m in Sources */,
+				5E6B04541B44411800AAA2FE /* Movies.m in Sources */,
 				5E6B042C1B443CB300AAA2FE /* main.m in Sources */,
-				5E6B04351B443CB300AAA2FE /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
