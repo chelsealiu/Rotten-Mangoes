@@ -103,6 +103,7 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="freshLabel" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYY-v0-GHS">
                                     <rect key="frame" x="162" y="133" width="150" height="49"/>
+                                    <color key="backgroundColor" red="0.20000001789999999" green="0.49803924560000001" blue="0.1215686351" alpha="0.47999999999999998" colorSpace="deviceRGB"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                     <color key="textColor" red="0.94608347039999996" green="0.78440584479999997" blue="0.79263466279999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -194,13 +195,8 @@
                                 <connections>
                                     <outlet property="criticLabel" destination="X2g-sI-q4t" id="80j-Qg-Fc4"/>
                                     <outlet property="dateLabel" destination="hqJ-yv-Loy" id="OWq-TT-Zmw"/>
-                                    <outlet property="detailMovieImage" destination="215-tD-HNh" id="FDK-J4-Pib"/>
-                                    <outlet property="freshLabel" destination="fYY-v0-GHS" id="AHW-of-qao"/>
                                     <outlet property="linksLabel" destination="cI0-L0-lop" id="1F6-di-BCY"/>
-                                    <outlet property="movieSynopsisLabel" destination="Qx5-cV-h1d" id="JHS-wE-xjN"/>
-                                    <outlet property="movieTitleLabel" destination="Fdp-6m-KQZ" id="3gz-QT-cvp"/>
                                     <outlet property="quoteLabel" destination="cU3-PP-GEy" id="ivB-Sv-bgy"/>
-                                    <outlet property="scoreLabel" destination="wdo-Ac-EvM" id="sCF-po-Kbw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
