@@ -18,6 +18,6 @@
 @property (nonatomic, strong) NSArray *movieReviewsArray;
 @property (nonatomic, strong) NSString *movieSynopsis;
 @property (nonatomic, strong) NSNumber *criticsScore;
-
+@property (nonatomic, strong) NSString *freshnessOfMovie;
 
 @end

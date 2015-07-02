@@ -10,6 +10,7 @@
 #import "DetailTableViewController.h"
 #import "Movies.h"
 #import "CustomCell.h"
+#import "MapViewController.h"
 
 @interface CollectionViewController ()
 
@@ -26,9 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=[API KEY]&page_limit=50";
-    NSURL *url = [NSURL URLWithString:urlString];
+    if ([self.objects count] != 0) {
+        return;
+        //exit early/no network request if reviews already exist
+    }
     
+    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=sr9tdu3checdyayjz85mff8j&page_limit=50";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"%@", urlString);
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *jsonError) {
         
         NSError *error;
@@ -45,10 +51,11 @@
                 Movies *newMovie = [[Movies alloc] init];
                 newMovie.title = movieDict[@"title"];
                 NSString *APIpart1 = [NSString stringWithFormat:@"%@", movieDict[@"links"][@"reviews"]];
-                newMovie.reviewsAPI = [APIpart1 stringByAppendingString:@"?apikey=[API KEY]"];
+                newMovie.reviewsAPI = [APIpart1 stringByAppendingString:@"?apikey=sr9tdu3checdyayjz85mff8j"];
                 newMovie.movieIcon = movieDict[@"posters"][@"thumbnail"]; //string links to thumbnail
                 newMovie.movieSynopsis = movieDict[@"synopsis"];
                 newMovie.criticsScore = movieDict[@"ratings"][@"critics_score"];
+                newMovie.freshnessOfMovie = movieDict[@"ratings"][@"critics_rating"];
                 
                 [moviesArray addObject: newMovie];
                 
@@ -65,8 +72,8 @@
     }];
     
     [task resume];
-    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

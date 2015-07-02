@@ -8,6 +8,7 @@
 
 #import "DetailTableViewController.h"
 #import "TableViewCell.h"
+#import "MapViewController.h"
 
 @interface DetailTableViewController ()
 
@@ -17,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *movieSynopsisLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detailMovieImage;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
+
+
 
 @end
 
@@ -76,12 +79,7 @@
                 
                 NSString *quoteString = [NSString stringWithFormat:@" '%@' ", reviewsDict[@"quote"]];
                 newReview.quoteOfReview = quoteString;
-                
-                if ([reviewsDict[@"freshness"] isEqualToString:@"rotten"]) {
-                    newReview.freshnessOfReview = @"ROTTEN";
-                } else {
-                    newReview.freshnessOfReview = @"FRESH";
-                }
+                newReview.freshnessOfReview = self.detailItem.freshnessOfMovie;
                 
                 [reviewsArray addObject: newReview];
                 
@@ -128,7 +126,7 @@
     customCell.dateLabel.text = review.dateOfReview;
     customCell.quoteLabel.text = review.quoteOfReview;
     customCell.linksLabel.text = review.linksOfReview;
- 
+    
 
     NSString *tempString = [NSString stringWithFormat:@"Score: %@",[self.detailItem.criticsScore stringValue]];
     self.scoreLabel.text = [tempString stringByAppendingString:@"%"];
@@ -137,11 +135,20 @@
     self.movieTitleLabel.text = self.detailItem.title;
     self.freshLabel.text = review.freshnessOfReview;
 
-    if ([review.freshnessOfReview isEqualToString:@"FRESH"]) {
+    if ([review.freshnessOfReview isEqualToString:@"Fresh"]) {
+        self.freshLabel.textColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
+        self.scoreLabel.textColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
+//        self.freshLabel.backgroundColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
+    }
+    
+    else if ([review.freshnessOfReview isEqualToString:@"Certified Fresh"]) {
+        
         self.freshLabel.textColor = [UIColor greenColor];
         self.scoreLabel.textColor = [UIColor greenColor];
-        self.freshLabel.backgroundColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
-    } else {
+//        self.freshLabel.backgroundColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
+    }
+    
+    else {
         self.freshLabel.textColor = [UIColor redColor];
         self.scoreLabel.textColor = [UIColor redColor];
         self.freshLabel.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.5];
@@ -183,5 +190,12 @@
     //should set dynamically
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movies*)sender {
+    if ([[segue identifier] isEqualToString:@"showMap"]) {
+        
+        sender = self.detailItem; //movie that clicked on in previous view controller
+        [[segue destinationViewController] setDetailItem: sender];
+    }
+}
 
 @end

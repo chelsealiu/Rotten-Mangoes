@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movies.h"
+#import "Reviews.h"
+
 
 @interface MapViewController : UIViewController
+
+@property (strong, nonatomic) Movies *detailItem;
+
+@property (strong, nonatomic) NSString *zipCode;
 
 @end

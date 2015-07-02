@@ -19,6 +19,9 @@
 		5E6B04601B44722100AAA2FE /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B045F1B44722100AAA2FE /* DetailTableViewController.m */; };
 		5E6B04631B44870400AAA2FE /* Reviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04621B44870400AAA2FE /* Reviews.m */; };
 		5E6B04661B448B8100AAA2FE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04651B448B8100AAA2FE /* TableViewCell.m */; };
+		5E6B04721B458EBC00AAA2FE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04711B458EBC00AAA2FE /* MapViewController.m */; };
+		5E6B04741B459BCC00AAA2FE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6B04731B459BCC00AAA2FE /* MapKit.framework */; };
+		5E6B04761B459F6400AAA2FE /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B04751B459F6400AAA2FE /* Location.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,10 @@
 		5E6B04621B44870400AAA2FE /* Reviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reviews.m; sourceTree = "<group>"; };
 		5E6B04641B448B8100AAA2FE /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		5E6B04651B448B8100AAA2FE /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		5E6B04701B458EBC00AAA2FE /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		5E6B04711B458EBC00AAA2FE /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		5E6B04731B459BCC00AAA2FE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5E6B04751B459F6400AAA2FE /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E6B04741B459BCC00AAA2FE /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +86,7 @@
 		5E6B041D1B443CB300AAA2FE = {
 			isa = PBXGroup;
 			children = (
+				5E6B04731B459BCC00AAA2FE /* MapKit.framework */,
 				5E6B04281B443CB300AAA2FE /* Rotten Mangoes */,
 				5E6B04451B443CB300AAA2FE /* Rotten MangoesTests */,
 				5E6B04271B443CB300AAA2FE /* Products */,
@@ -104,8 +113,11 @@
 				5E6B04561B44530600AAA2FE /* CollectionViewController.m */,
 				5E6B045E1B44722100AAA2FE /* DetailTableViewController.h */,
 				5E6B045F1B44722100AAA2FE /* DetailTableViewController.m */,
+				5E6B04701B458EBC00AAA2FE /* MapViewController.h */,
+				5E6B04711B458EBC00AAA2FE /* MapViewController.m */,
 				5E6B04611B44870400AAA2FE /* Reviews.h */,
 				5E6B04621B44870400AAA2FE /* Reviews.m */,
+				5E6B04751B459F6400AAA2FE /* Location.gpx */,
 				5E6B04521B44411800AAA2FE /* Movies.h */,
 				5E6B04531B44411800AAA2FE /* Movies.m */,
 				5E6B04361B443CB300AAA2FE /* Main.storyboard */,
@@ -226,6 +238,7 @@
 			files = (
 				5E6B04381B443CB300AAA2FE /* Main.storyboard in Resources */,
 				5E6B043D1B443CB300AAA2FE /* LaunchScreen.xib in Resources */,
+				5E6B04761B459F6400AAA2FE /* Location.gpx in Resources */,
 				5E6B043A1B443CB300AAA2FE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +260,7 @@
 				5E6B04601B44722100AAA2FE /* DetailTableViewController.m in Sources */,
 				5E6B04631B44870400AAA2FE /* Reviews.m in Sources */,
 				5E6B042F1B443CB300AAA2FE /* AppDelegate.m in Sources */,
+				5E6B04721B458EBC00AAA2FE /* MapViewController.m in Sources */,
 				5E6B04571B44530600AAA2FE /* CollectionViewController.m in Sources */,
 				5E6B045A1B44559500AAA2FE /* CustomCell.m in Sources */,
 				5E6B04661B448B8100AAA2FE /* TableViewCell.m in Sources */,
