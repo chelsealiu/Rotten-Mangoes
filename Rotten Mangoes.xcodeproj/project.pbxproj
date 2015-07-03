@@ -22,6 +22,7 @@
 		5E6B04721B458EBC00AAA2FE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B04711B458EBC00AAA2FE /* MapViewController.m */; };
 		5E6B04741B459BCC00AAA2FE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6B04731B459BCC00AAA2FE /* MapKit.framework */; };
 		5E6B04761B459F6400AAA2FE /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B04751B459F6400AAA2FE /* Location.gpx */; };
+		5E6B04781B46E62400AAA2FE /* theatre_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B04771B46E62400AAA2FE /* theatre_pin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		5E6B04711B458EBC00AAA2FE /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		5E6B04731B459BCC00AAA2FE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5E6B04751B459F6400AAA2FE /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		5E6B04771B46E62400AAA2FE /* theatre_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = theatre_pin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				5E6B04611B44870400AAA2FE /* Reviews.h */,
 				5E6B04621B44870400AAA2FE /* Reviews.m */,
 				5E6B04751B459F6400AAA2FE /* Location.gpx */,
+				5E6B04771B46E62400AAA2FE /* theatre_pin.png */,
 				5E6B04521B44411800AAA2FE /* Movies.h */,
 				5E6B04531B44411800AAA2FE /* Movies.m */,
 				5E6B04361B443CB300AAA2FE /* Main.storyboard */,
@@ -239,6 +242,7 @@
 				5E6B04381B443CB300AAA2FE /* Main.storyboard in Resources */,
 				5E6B043D1B443CB300AAA2FE /* LaunchScreen.xib in Resources */,
 				5E6B04761B459F6400AAA2FE /* Location.gpx in Resources */,
+				5E6B04781B46E62400AAA2FE /* theatre_pin.png in Resources */,
 				5E6B043A1B443CB300AAA2FE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +464,7 @@
 				5E6B044E1B443CB300AAA2FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E6B044F1B443CB300AAA2FE /* Build configuration list for PBXNativeTarget "Rotten MangoesTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +473,7 @@
 				5E6B04511B443CB300AAA2FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

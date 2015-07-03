@@ -34,7 +34,7 @@
         //exit early/no network request if reviews already exist
     }
     
-    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=[api key]&page_limit=50";
+    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=sr9tdu3checdyayjz85mff8j&page_limit=50";
     NSURL *url = [NSURL URLWithString:urlString];
     NSLog(@"%@", urlString);
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *fetchingError) {
@@ -43,7 +43,6 @@
             
             NSLog(@"Fetching Error: %@", fetchingError);
             return;
-            
         }
         
         NSError *jsonError;
@@ -68,7 +67,7 @@
             for (NSDictionary *movieDict in allMovies) {
                 Movies *newMovie = [[Movies alloc] init];
                 newMovie.title = movieDict[@"title"];
-                newMovie.reviewsAPI = [movieDict[@"links"][@"reviews"] stringByAppendingString:@"?apikey=[api key]"];
+                newMovie.reviewsAPI = [movieDict[@"links"][@"reviews"] stringByAppendingString:@"?apikey=sr9tdu3checdyayjz85mff8j"];
                 newMovie.movieIcon = movieDict[@"posters"][@"thumbnail"]; //string links to thumbnail
                 newMovie.movieSynopsis = movieDict[@"synopsis"];
                 newMovie.criticsScore = movieDict[@"ratings"][@"critics_score"];

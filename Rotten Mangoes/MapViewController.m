@@ -7,7 +7,6 @@
 //
 
 #import "MapViewController.h"
-#import "DetailTableViewController.h"
 
 @import MapKit;
 
@@ -154,6 +153,9 @@
         } else {
             NSMutableArray *theatresArray = [NSMutableArray array];
             NSMutableArray *namesArray = [NSMutableArray array];
+            
+            
+            
             for (NSDictionary *theatreDict in allTheatres) {
                 
                 //add annotation for each movie theatre in view
@@ -170,8 +172,7 @@
                 self.printTheatres = [namesArray mutableCopy];
                 [self.tableView reloadData];
                 NSLog(@"%@", self.printTheatres);
-                NSLog(@"%@", url);
-                
+
             }); //end main thread code
         }
         
@@ -180,13 +181,39 @@
     [task resume];
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movies*)sender {
     
     if ([[segue identifier] isEqualToString:@"showMap"]) {
         sender = self.detailItem; //movie that clicked on in previous view controller
         [[segue destinationViewController] setDetailItem: sender];
     }
+}
+
+//customizing the view of the theatre pins
+
+- (MKAnnotationView*)mapView:(MKMapView*)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if (annotation == self.mapView.userLocation) {
+        return nil;
+    }
+    
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"TheatrePin"];
+    if (!annotationView) {
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"TheatrePin"];
+        //resize image
+        CGSize tempSize = CGSizeMake(25, 32);
+        UIImage *tempImage = [UIImage imageNamed:@"theatre_pin"];
+        UIGraphicsBeginImageContext(tempSize);
+        [tempImage drawInRect:CGRectMake(0,0,tempSize.width,tempSize.height)];
+        annotationView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height/2);
+        //account for size difference of custom image vs original pin
+        //x coordinate is fine, change the placement for y coordinate
+        annotationView.canShowCallout = YES;
+    }
+        
+    return annotationView;
 }
 
 #pragma mark Table View
