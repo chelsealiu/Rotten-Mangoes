@@ -9,17 +9,16 @@
 #import "DetailTableViewController.h"
 #import "TableViewCell.h"
 #import "MapViewController.h"
+#import "Movies.h"
+#import "Reviews.h"
 
 @interface DetailTableViewController ()
-
 
 @property (weak, nonatomic) IBOutlet UILabel *freshLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieSynopsisLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detailMovieImage;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
-
-
 
 @end
 
@@ -38,21 +37,24 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     if ([self.detailItem.movieReviewsArray count] != 0) {
+        [self setTableViewLabel];
         return;
         //exit early/no network request if reviews already exist
     }
     
     NSURL *reviewsURL = [NSURL URLWithString:self.detailItem.reviewsAPI];
     
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:reviewsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *jsonError) {
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:reviewsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *fetchingError) {
         
-        NSError *error;
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+//        if
+        
+        NSError *jsonError;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
         
         NSArray *allReviews = responseDictionary[@"reviews"];
         
         if (!allReviews) {
-            NSLog(@"ERROR! %@", jsonError);
+            NSLog(@"ERROR!");
         } else {
             
             NSMutableArray *reviewsArray = [NSMutableArray array];
@@ -60,38 +62,29 @@
             int counter = 0;
             
             for (NSDictionary *reviewsDict in allReviews) {
-                
                 if (counter < 3) {
-                    
                     counter ++;
-                    
                 } else {
-
                     break;
                 }
 
                 Reviews *newReview = [[Reviews alloc] init];
-                
                 newReview.criticOfReview = [reviewsDict[@"critic"] stringByAppendingString:@", "];
                 newReview.dateOfReview = reviewsDict[@"date"];
                 newReview.linksOfReview = reviewsDict[@"links"][@"review"];
                 newReview.publicationOfReview = reviewsDict[@"publication"];
-                
-                NSString *quoteString = [NSString stringWithFormat:@" '%@' ", reviewsDict[@"quote"]];
-                newReview.quoteOfReview = quoteString;
+                newReview.quoteOfReview = reviewsDict[@"quote"];
                 newReview.freshnessOfReview = self.detailItem.freshnessOfMovie;
                 
                 [reviewsArray addObject: newReview];
-                
             }
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     self.detailItem.movieReviewsArray = [reviewsArray mutableCopy];
+                    [self setTableViewLabel];
                     [self.tableView reloadData];
-
             });
             //end main thread code
         }
-        
     }];
     
     [task resume];
@@ -100,7 +93,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -116,36 +108,21 @@
 }
 
 
-//will only run if the above methods do not return 0
-- (TableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    TableViewCell *customCell = [tableView dequeueReusableCellWithIdentifier:@"TableCell" forIndexPath:indexPath];
-    Reviews *review = self.detailItem.movieReviewsArray[indexPath.row];
-    
-    customCell.criticLabel.text = [review.criticOfReview stringByAppendingString:review.publicationOfReview];
-    customCell.dateLabel.text = review.dateOfReview;
-    customCell.quoteLabel.text = review.quoteOfReview;
-    customCell.linksLabel.text = review.linksOfReview;
-    
-
-    NSString *tempString = [NSString stringWithFormat:@"Score: %@",[self.detailItem.criticsScore stringValue]];
-    self.scoreLabel.text = [tempString stringByAppendingString:@"%"];
-    
+- (void)setTableViewLabel {
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %@ %%",[self.detailItem.criticsScore stringValue]];
     self.movieSynopsisLabel.text = self.detailItem.movieSynopsis;
     self.movieTitleLabel.text = self.detailItem.title;
-    self.freshLabel.text = review.freshnessOfReview;
-
-    if ([review.freshnessOfReview isEqualToString:@"Fresh"]) {
+    self.freshLabel.text = self.detailItem.freshnessOfMovie;
+    
+    if ([self.detailItem.freshnessOfMovie isEqualToString:@"Fresh"]) {
         self.freshLabel.textColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
         self.scoreLabel.textColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
-//        self.freshLabel.backgroundColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
     }
     
-    else if ([review.freshnessOfReview isEqualToString:@"Certified Fresh"]) {
+    else if ([self.detailItem.freshnessOfMovie isEqualToString:@"Certified Fresh"]) {
         
         self.freshLabel.textColor = [UIColor greenColor];
         self.scoreLabel.textColor = [UIColor greenColor];
-//        self.freshLabel.backgroundColor = [UIColor colorWithRed:0 green:1.0 blue:0 alpha:0.5];
     }
     
     else {
@@ -162,12 +139,23 @@
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         self.detailMovieImage.image = [UIImage imageWithData:imageData];
     });
-    
-    return customCell;
-    
 }
 
-// Override to support conditional editing of the table view.
+//will only run if the above methods do not return 0
+- (TableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    TableViewCell *customCell = [tableView dequeueReusableCellWithIdentifier:@"TableCell" forIndexPath:indexPath];
+    Reviews *review = self.detailItem.movieReviewsArray[indexPath.row];
+    
+    customCell.criticLabel.text = [review.criticOfReview stringByAppendingString:review.publicationOfReview];
+    customCell.dateLabel.text = review.dateOfReview;
+    customCell.quoteLabel.text = review.quoteOfReview;
+    customCell.linksLabel.text = review.linksOfReview;
+    
+    return customCell;
+}
+
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
@@ -185,9 +173,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 250;
+    return 180;
 //    return UITableViewAutomaticDimension;
-    //should set dynamically
+//    should set dynamically
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movies*)sender {

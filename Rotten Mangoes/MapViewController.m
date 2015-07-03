@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#import "DetailTableViewController.h"
+
 @import MapKit;
 
 @interface MapViewController () <CLLocationManagerDelegate>
@@ -14,12 +16,15 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) BOOL setInitialLocation;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) NSMutableArray *theatresArray;
+@property (strong, nonatomic) NSArray *printTheatres;
+@property (strong, nonatomic) NSString *zipCode;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation MapViewController
 
+//passing in Movies object as self.detailItem
 
 - (void)setDetailItem:(Movies*)newDetailItem {
     if (_detailItem != newDetailItem) {
@@ -28,12 +33,9 @@
     }
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
 
 //initialize everything:
 
@@ -45,17 +47,14 @@
     self.locationManager.delegate = self; //must conform to protocol in HEADER as well as storyboard!!!
     self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
 
-    //check user's current settings: enabled? then-> allows access?
+    //check user's current settings: enabled? -> allows access?
     if ([CLLocationManager locationServicesEnabled]) {
         CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
         if (status == kCLAuthorizationStatusNotDetermined) {
-            [self.locationManager requestWhenInUseAuthorization];
-            //only request for tracking when app opens
+            [self.locationManager requestWhenInUseAuthorization]; //only request for tracking when app opens
+
         }
     }
-    
-//    [self loadTheatreAddresses];
-    
 }
 
 //changes made when user changes authorization status
@@ -74,12 +73,9 @@
     CLLocation *currentLocation = [locations lastObject]; //most recent update
     
     if (!self.setInitialLocation) {
-        
         self.setInitialLocation = YES; //make sure this is only called once
         MKCoordinateRegion region = MKCoordinateRegionMake(currentLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01));
-        
         [self.mapView setRegion:region animated:YES];
-
     
     //reverse geocode to get postal code!
     
@@ -91,21 +87,13 @@
             return;
         } else {
             CLPlacemark *placemark = [[CLPlacemark alloc] initWithPlacemark:[placemarks lastObject]];
-            self.zipCode = [placemark postalCode];
-            //inside a block: why can you only assign values to properties and not local variables?
-        
+            self.zipCode = [placemark postalCode]; //inside a block: why can you only assign values to properties and not local variables?
             [self loadTheatreAddresses];
-
-        }
-        
-    }];
-    
+            
+            }
+        }];
     }
-    
 }
-
-
-
 
 //show user's current location
 
@@ -114,13 +102,9 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         
         //if user wants to be tracked but denied permission to be tracked, make alert popup to open settings
-        //allows user to OPEN SETTINGS and change settings to allow app to track location
-        
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Denied" message:@"Please enable us to stalk where you are" preferredStyle:UIAlertControllerStyleAlert];
-        
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:cancelAction];
-        
         UIAlertAction *openAction = [UIAlertAction actionWithTitle:@"Open Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
             //opening settings
@@ -129,74 +113,109 @@
                 [[UIApplication sharedApplication] openURL:settingsURL];
             }
         }];
+        
         [alertController addAction:openAction];
         [self presentViewController:alertController animated:YES completion:nil];
         
     }
-    //don't zoom if already zoomed
-    //check if already zoomed:
-    if (self.mapView.userLocation) {
-        
-        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
-        
-        
-    }
     
+    if (self.mapView.userLocation) {    //Check if user is already zoomed in to current location
+        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
+    }
 }
 
 - (void) loadTheatreAddresses {
     
     //HTTP Request begins:
-    // add format like: address=V6B1E6&movie=Paddington
     NSString *modifiedZipCode = [self.zipCode stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *urlString = [NSString stringWithFormat: @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=%@&movie=%@", modifiedZipCode, self.detailItem.title];
-    
     NSURL *url = [NSURL URLWithString:urlString];
-    
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *jsonError) {
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *fetchingError) {
         
-        NSError *error;
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        if (fetchingError) {
+            NSLog(@"Fetching Error: %@", fetchingError);
+        }
+        
+        NSError *jsonError;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        
+        if (jsonError) {
+            NSLog(@"JSON Error: %@", jsonError);
+        }
+        
         NSArray *allTheatres = responseDictionary[@"theatres"];
         
         if (!allTheatres) {
-            NSLog(@"ERROR! %@", jsonError);
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No theatres near you are playing this movie." message:@":(" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alertController addAction:cancelAction];
+            [self presentViewController:alertController animated:YES completion:nil];
             
         } else {
             NSMutableArray *theatresArray = [NSMutableArray array];
+            NSMutableArray *namesArray = [NSMutableArray array];
             for (NSDictionary *theatreDict in allTheatres) {
                 
                 //add annotation for each movie theatre in view
                 MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
-                
                 marker.coordinate = CLLocationCoordinate2DMake([theatreDict[@"lat"] doubleValue], [theatreDict[@"lng"] doubleValue]);
                 marker.title = theatreDict[@"name"];
-                [self.theatresArray addObject:marker.title];
+                [namesArray addObject:marker.title];
                 marker.subtitle = theatreDict[@"address"];
-                
                 [theatresArray addObject:marker];
             }
             
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.mapView addAnnotations:theatresArray];
+                self.printTheatres = [namesArray mutableCopy];
+                [self.tableView reloadData];
+                NSLog(@"%@", self.printTheatres);
                 NSLog(@"%@", url);
-            });
-            //end main thread code
+                
+            }); //end main thread code
         }
         
     }];
-    
+
     [task resume];
-    
 }
 
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressCell" forIndexPath:indexPath];
-    NSString *theatreName = self.theatresArray[indexPath.row];
-    cell.textLabel.text = theatreName;
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movies*)sender {
     
-    return cell;
-    
+    if ([[segue identifier] isEqualToString:@"showMap"]) {
+        sender = self.detailItem; //movie that clicked on in previous view controller
+        [[segue destinationViewController] setDetailItem: sender];
+    }
 }
+
+#pragma mark Table View
+
+//must connect delegate and datasource in storyboard in order for tableviewcontroller methods to run
+//note: sort by distance from current location
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.printTheatres count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressCell" forIndexPath:indexPath];
+    NSString *theatreName = self.printTheatres[indexPath.row];
+    cell.textLabel.text = theatreName;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
 
 @end

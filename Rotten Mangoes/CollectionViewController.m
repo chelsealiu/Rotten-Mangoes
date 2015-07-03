@@ -18,6 +18,8 @@
 
 @end
 
+//static NSString *apiKey = ;
+
 @implementation CollectionViewController
 
 - (void)awakeFromNib {
@@ -35,14 +37,30 @@
     NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=[api key]&page_limit=50";
     NSURL *url = [NSURL URLWithString:urlString];
     NSLog(@"%@", urlString);
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *jsonError) {
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *fetchingError) {
         
-        NSError *error;
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        if (fetchingError) {
+            
+            NSLog(@"Fetching Error: %@", fetchingError);
+            return;
+            
+        }
+        
+        NSError *jsonError;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        
+        if (jsonError) {
+            
+            NSLog(@"JSON Error: %@", jsonError);
+            return;
+        }
+        
         NSArray *allMovies = responseDictionary[@"movies"];
         
         if (!allMovies) {
-            NSLog(@"ERROR! %@", jsonError);
+            
+            NSLog(@"Nonexistent key 'movies'");
+            
         } else {
             
             NSMutableArray *moviesArray = [NSMutableArray array];
@@ -50,8 +68,7 @@
             for (NSDictionary *movieDict in allMovies) {
                 Movies *newMovie = [[Movies alloc] init];
                 newMovie.title = movieDict[@"title"];
-                NSString *APIpart1 = [NSString stringWithFormat:@"%@", movieDict[@"links"][@"reviews"]];
-                newMovie.reviewsAPI = [APIpart1 stringByAppendingString:@"?apikey=[api key]"];
+                newMovie.reviewsAPI = [movieDict[@"links"][@"reviews"] stringByAppendingString:@"?apikey=[api key]"];
                 newMovie.movieIcon = movieDict[@"posters"][@"thumbnail"]; //string links to thumbnail
                 newMovie.movieSynopsis = movieDict[@"synopsis"];
                 newMovie.criticsScore = movieDict[@"ratings"][@"critics_score"];
@@ -62,7 +79,7 @@
             }
             
             dispatch_sync(dispatch_get_main_queue(), ^{
-                self.objects = [moviesArray mutableCopy];
+                self.objects = moviesArray;
                 [self.collectionView reloadData];
                 
             });
@@ -109,20 +126,17 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
         
-    CustomCell *customCell = [[CustomCell alloc] init];
-    
-    customCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    
+    CustomCell *customCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     Movies *newMovie = self.objects[indexPath.row];
-    
     customCell.textLabel.text = [newMovie valueForKey:@"title"];
     
+    //make background queue
     dispatch_async(dispatch_get_main_queue(), ^{
         Movies *movie = [self.objects objectAtIndex:indexPath.row];
         NSString *imageString = movie.movieIcon;
         NSURL *imageURL = [NSURL URLWithString:imageString];
-        
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        
         customCell.movieImageView.image = [UIImage imageWithData:imageData];
     });
     

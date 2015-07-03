@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Movies.h"
-#import "Reviews.h"
+
+@class Movies;
 
 @interface DetailTableViewController : UITableViewController
 
