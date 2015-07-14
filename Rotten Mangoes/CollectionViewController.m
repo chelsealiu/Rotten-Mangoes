@@ -24,6 +24,13 @@
 
 @implementation CollectionViewController
 
+- (void)setDetailItem:(User*)newDetailItem {
+    if (_detailItem != newDetailItem) {
+        _detailItem = newDetailItem;
+        
+    }
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
@@ -31,6 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setToolbarHidden:YES];
+
     if ([self.objects count] != 0) {
         return;
         //exit early/no network request if reviews already exist
@@ -150,5 +159,13 @@
     return 4;
 }
 
+- (IBAction)goToProfile:(id)sender {
+    
+    for (UIViewController*vc in [self.navigationController viewControllers]) {
+        if ([vc isKindOfClass: [ProfileViewController class]]){
+            [[self navigationController] popToViewController:vc animated:YES];
+        }
+    }
+}
 
 @end

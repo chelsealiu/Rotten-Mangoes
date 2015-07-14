@@ -11,7 +11,7 @@
 #import <Parse/Parse.h>
 #import "SignUpViewController.h"
 #import "ProfileViewController.h"
-
+#import "HomeViewController.h"
 
 @interface LoginViewController ()
 
@@ -28,56 +28,60 @@
 
 @implementation LoginViewController
 
+
 -(void)viewDidLoad {
     
     [super viewDidLoad];
     
+    self.navigationItem.hidesBackButton = YES;
+    [self.navigationController setToolbarHidden:YES];
+
     PFQuery *query = [[PFQuery alloc] initWithClassName:@"User"];
-//    NSMutableArray *allObjects = [NSMutableArray array];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
         
         if (!error) {
-            
-            for (User *user in objects) {
-                if ([user.username isEqualToString:self.usernameLoginTextfield.text] && [user.password isEqualToString:self.passwordLoginTextfield.text]) {
-                    self.currentUser = user;
-                    self.loginIsValid = YES;
-                }
-                else {
-                    self.loginIsValid = NO;
-                }
-            }
+            self.userObjects = [objects mutableCopy];
+        
         }
     }];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//        self.userObjects = [allObjects mutableCopy];
-//        
-//    });
-//    
-//}];
+    
+}
+
+//modal, pops up then down
+
+- (IBAction)cancelAction:(id)sender {
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)submitLoginInfo:(id)sender {
+    
+    [self checkComboValidity];
 
 }
 
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+-(BOOL) checkComboValidity {
     
-    if ([identifier isEqualToString:@"segueLoginToSignUp"]) {
-        return YES;
-    }
-    
-    else if (self.loginIsValid == YES) {
+    for (User *user in self.userObjects) {
         
-        NSLog(@"%s", self.loginIsValid ? "true":"false");
+        NSLog(@"%@", user);
+        if ([user.username isEqualToString:self.usernameLoginTextfield.text] && [user.password isEqualToString:self.passwordLoginTextfield.text]) {
+            
+            NSLog(@"%@, %@", user.username, user.password);
+            self.currentUser = user;
+//            self.loginIsValid = YES;
+//            self.currentUser.isLoggedIn = YES;
+            
+            return YES;
 
-        return YES;
+        }
     }
-   
-    else if ([identifier isEqualToString:@"segueLoginToMovies"]) {
-        
-        return YES;
-        
-    }
+    
+    self.usernameLoginTextfield.text = nil;
+    self.passwordLoginTextfield.text = nil; //clears textfields
+    
+    NSLog(@"invalid login info");
     
     UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Error"
                                                      message:@"The username and password combination is invalid."
@@ -86,25 +90,25 @@
                                            otherButtonTitles: nil];
     [alert show];
     
-    self.usernameLoginTextfield.text = nil;
-    self.passwordLoginTextfield.text = nil; //clears textfields
-
     NSLog(@"%s", self.loginIsValid ? "true":"false");
 
     return NO;
-        
+   
 }
 
-//
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(User*)user  {
-//    
-//    if ([[segue identifier] isEqualToString:@"segueToProfile"]) {
-//        [[segue destinationViewController] setDetailItem: user];
-//    }
-//    
-//}
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+    return [self checkComboValidity];
+    
+}
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(User*)user  {
+    
+    if ([[segue identifier] isEqualToString:@"showProfile"]) {
+        [[segue destinationViewController] setUserItem: self.currentUser];
+    }
+    
+}
 
 //-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender  {
 //    if ([[segue identifier] isEqualToString:@"segueLoginToSignUp"]) {
@@ -118,6 +122,55 @@
 //        
 //    }
 //    
+//}
+
+
+//-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+//
+//    if ([identifier isEqualToString:@"showSignUp"]) {
+//
+//        NSLog(@"showSignUp");
+//        return YES; //always allows the user to sign up if no account
+//    }
+//
+//    if (self.loginIsValid == YES && [identifier isEqualToString:@"showProfile"]) {
+//
+//        NSLog(@"%s", self.loginIsValid ? "true":"false");
+//
+//        return YES; //only shows user profile if login information is valid
+//    }
+//
+//    if ([identifier isEqualToString:@"showMovies"]) {
+//
+//        NSLog(@"showMovies");
+//        return YES; //always allows the user to view movies, regardless of whether or not they have an account
+//
+//    }
+//
+//    if (self.loginIsValid == NO && [identifier isEqualToString:@"showProfile"]) {
+//
+//        //do not show user profile if login information is invalid
+//
+//        NSLog(@"invalid login info");
+//        self.usernameLoginTextfield.text = nil;
+//        NSLog(@"%@", self.usernameLoginTextfield.text);
+//
+//        self.passwordLoginTextfield.text = nil; //clears textfields
+//
+//        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Error"
+//                                                         message:@"The username and password combination is invalid."
+//                                                        delegate:self
+//                                               cancelButtonTitle:@"Go Back"
+//                                               otherButtonTitles: nil];
+//        [alert show];
+//
+//        NSLog(@"%s", self.loginIsValid ? "true":"false");
+//
+//        return NO;
+//
+//    }
+//
+//    return NO;
 //}
 
 

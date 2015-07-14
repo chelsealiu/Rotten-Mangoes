@@ -40,6 +40,8 @@
 		5EDC94C71B546805007C0EE8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94C61B546805007C0EE8 /* AssetsLibrary.framework */; };
 		5EDC94C91B547433007C0EE8 /* default_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDC94C81B547433007C0EE8 /* default_user.png */; };
 		5EDC94CC1B548C5A007C0EE8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC94CB1B548C5A007C0EE8 /* LoginViewController.m */; };
+		5EDC94D21B554297007C0EE8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC94D11B554297007C0EE8 /* HomeViewController.m */; };
+		5EDC94D41B55AA46007C0EE8 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDC94D31B55AA46007C0EE8 /* heart.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,9 @@
 		5EDC94C81B547433007C0EE8 /* default_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_user.png; sourceTree = "<group>"; };
 		5EDC94CA1B548C5A007C0EE8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5EDC94CB1B548C5A007C0EE8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		5EDC94D01B554297007C0EE8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		5EDC94D11B554297007C0EE8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		5EDC94D31B55AA46007C0EE8 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,10 +182,12 @@
 			children = (
 				5E6B042D1B443CB300AAA2FE /* AppDelegate.h */,
 				5E6B042E1B443CB300AAA2FE /* AppDelegate.m */,
-				5EDC94CA1B548C5A007C0EE8 /* LoginViewController.h */,
-				5EDC94CB1B548C5A007C0EE8 /* LoginViewController.m */,
+				5EDC94D01B554297007C0EE8 /* HomeViewController.h */,
+				5EDC94D11B554297007C0EE8 /* HomeViewController.m */,
 				5EDC94A11B5420FF007C0EE8 /* SignUpViewController.h */,
 				5EDC94A21B5420FF007C0EE8 /* SignUpViewController.m */,
+				5EDC94CA1B548C5A007C0EE8 /* LoginViewController.h */,
+				5EDC94CB1B548C5A007C0EE8 /* LoginViewController.m */,
 				5EDC94B01B542532007C0EE8 /* ProfileViewController.h */,
 				5EDC94B11B542532007C0EE8 /* ProfileViewController.m */,
 				5EDC94B31B543DCF007C0EE8 /* User.h */,
@@ -201,6 +208,7 @@
 				5E6B04771B46E62400AAA2FE /* theatre_pin.png */,
 				5E6B04521B44411800AAA2FE /* Movies.h */,
 				5E6B04531B44411800AAA2FE /* Movies.m */,
+				5EDC94D31B55AA46007C0EE8 /* heart.png */,
 				5E6B04361B443CB300AAA2FE /* Main.storyboard */,
 				5E6B04391B443CB300AAA2FE /* Images.xcassets */,
 				5EDC94C81B547433007C0EE8 /* default_user.png */,
@@ -320,6 +328,7 @@
 				5E6B043D1B443CB300AAA2FE /* LaunchScreen.xib in Resources */,
 				5EDC94C91B547433007C0EE8 /* default_user.png in Resources */,
 				5E6B04761B459F6400AAA2FE /* Location.gpx in Resources */,
+				5EDC94D41B55AA46007C0EE8 /* heart.png in Resources */,
 				5E6B04781B46E62400AAA2FE /* theatre_pin.png in Resources */,
 				5E6B043A1B443CB300AAA2FE /* Images.xcassets in Resources */,
 			);
@@ -344,6 +353,7 @@
 				5EDC94CC1B548C5A007C0EE8 /* LoginViewController.m in Sources */,
 				5E6B042F1B443CB300AAA2FE /* AppDelegate.m in Sources */,
 				5E6B04721B458EBC00AAA2FE /* MapViewController.m in Sources */,
+				5EDC94D21B554297007C0EE8 /* HomeViewController.m in Sources */,
 				5E6B04571B44530600AAA2FE /* CollectionViewController.m in Sources */,
 				5E6B045A1B44559500AAA2FE /* CustomCell.m in Sources */,
 				5EDC94A31B5420FF007C0EE8 /* SignUpViewController.m in Sources */,

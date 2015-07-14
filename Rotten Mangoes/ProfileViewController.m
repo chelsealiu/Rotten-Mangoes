@@ -10,10 +10,12 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "Movies.h"
+#import "CollectionViewController.h"
+#import "HomeViewController.h"
 
 @interface ProfileViewController ()
 
-@property (nonatomic, strong) User *currentUser;
+@property (nonatomic, strong) User *profileUser;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userTypeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -24,43 +26,66 @@
 @implementation ProfileViewController
 
 
-//
-//- (void)setDetailItem:(User*)newDetailItem {
-//    if (_detailItem != newDetailItem) {
-//        _detailItem = newDetailItem;
-//        
-//    }
-//}
+//pass in username as a string
+
+- (void)setUserItem:(User*)newDetailItem {
+    if (_userItem != newDetailItem) {
+        _userItem = newDetailItem;
+        
+    }
+}
+
+- (void)setFavouritesItem:(NSMutableArray*)newDetailItem {
+    if (_favouritesItem != newDetailItem) {
+        _favouritesItem = newDetailItem;
+        
+    }
+}
 
 
 -(void)viewDidLoad {
     
     [super viewDidLoad];
+    [self.navigationController setToolbarHidden:YES];
+
+    self.navigationItem.hidesBackButton = YES;
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+    User *currentUser = [[User alloc] init];//implementing singleton method
+    currentUser = self.userItem; //passed in User object from login screen
     
-    User *user = [User objectWithClassName:@"User"]; //refers to existing user object
-    
-    self.usernameLabel.text = user.username;
-    self.userTypeLabel.text = user.userType;
-    self.profileImageView.image = user.userImage; // (?) probably need to fix something here later
+    self.usernameLabel.text = currentUser.username;
+    self.userTypeLabel.text = currentUser.userType;
+    [currentUser.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            self.profileImageView.image = [UIImage imageWithData:data];
+        }
+    }];
+    NSLog(@"username: %@, pswd: %@", currentUser.username, currentUser.userType);
 
 }
 
-
-- (IBAction)finishedViewingProfile:(id)sender {
+- (IBAction)logoutAction:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    self.userItem.isLoggedIn = NO; //logged out
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showMovies"]) {
+        [[segue destinationViewController] setDetailItem:self.userItem];
+    }
+    
+    
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    User *user = [User objectWithClassName:@"User"]; //refers to existing user object
-
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FavouriteCell" forIndexPath:indexPath];
     
     Movies *tempMovieObject = [[Movies alloc] init];
-    tempMovieObject = user.favouriteMoviesArray[indexPath.row];
+    tempMovieObject = self.favouritesItem[indexPath.row];
     cell.textLabel.text = tempMovieObject.title;
     
     return cell;
@@ -75,10 +100,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    User *user = [User objectWithClassName:@"User"]; //refers to existing user object
-
-    return user.favouriteMoviesArray.count; //change to number of movies favourited
+    return self.favouritesItem.count; //change to number of movies favourited
     
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+    }
 }
 
 

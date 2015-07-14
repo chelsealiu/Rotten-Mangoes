@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomCell.h"
+#import "User.h"
 
 @interface CollectionViewController : UICollectionViewController
 
-
+@property (strong, nonatomic) User *detailItem;
 
 @end

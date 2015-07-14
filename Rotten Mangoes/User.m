@@ -15,6 +15,8 @@
 @dynamic pickerDataIndex;
 @dynamic userType;
 @dynamic password;
+@dynamic isLoggedIn;
+@dynamic imageFile;
 
 +(NSString * __nonnull)parseClassName {
     
@@ -26,6 +28,24 @@
     [self registerSubclass];
 }
 
+#pragma mark Singleton Method
+
+//+ (id)currentUser {
+//    
+//    static User *currentUser = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        currentUser = [[self alloc] init];
+//    });
+//    return currentUser;
+//}
+
+//- (id)init {
+//    if (self = [super init]) {
+//        username = [[NSString alloc] initWithString:@"Default Property Value"];
+//    }
+//    return self;
+//}
 
 
 @end

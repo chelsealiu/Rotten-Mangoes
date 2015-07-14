@@ -7,6 +7,7 @@
 //
 
 #import "MapViewController.h"
+#import "ProfileViewController.h"
 
 @import MapKit;
 
@@ -39,7 +40,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.navigationController setToolbarHidden:YES];
+
     self.setInitialLocation = NO;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self; //must conform to protocol in HEADER as well as storyboard!!!
@@ -239,7 +241,5 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
-
 
 @end

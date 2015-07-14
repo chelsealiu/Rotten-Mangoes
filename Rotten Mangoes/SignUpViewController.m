@@ -33,7 +33,10 @@
     self.pickerData = @[@"Casual Movie Fan", @"Movie Critic"];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
+    self.navigationItem.hidesBackButton = YES;
     
+    [self.navigationController setToolbarHidden:YES];
+
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
@@ -60,6 +63,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     self.imageView.image = [info valueForKey:UIImagePickerControllerEditedImage];
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -80,24 +84,55 @@
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self.navigationController presentViewController:picker animated:YES completion:NULL];
 
 }
 
 
 - (IBAction)saveUserInfo:(id)sender {
     
+    //can you initialize the singleton here?
+    
     User *newUser = [[User alloc] init];
     newUser.username = self.usernameTextfield.text;
     newUser.pickerDataIndex = [self.pickerView selectedRowInComponent:0];
     newUser.userType = self.pickerData[newUser.pickerDataIndex];
     newUser.password = self.passwordTextfield.text;
+//    newUser.userImage = self.imageView.image; -> crashing
     
-//    newUser.userImage = self.imageView.image;
+    NSData* data = UIImageJPEGRepresentation(self.imageView.image, 0.5f);
+    newUser.imageFile = [PFFile fileWithName:@"Image.jpg" data:data];
+    
+    // Save the image to Parse
+    [newUser.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // The image has now been uploaded to Parse. Associate it with a new object
+           
+            [newUser setObject:newUser.imageFile forKey:@"image"];
+            
+            [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"Saved");
+                }
+                else{
+                    // Error
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+        }
+    }];
     
     [newUser saveEventually];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Congrats!"
+                                                     message:@"You have created a new account."
+                                                    delegate:self
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles: nil];
+    [alert show];
+
     
     NSLog(@"name: %@, user type: %@, profile image: %@", newUser.username, newUser.userType, newUser.userImage);
     
@@ -105,7 +140,7 @@
 
 - (IBAction)cancelSignUp:(id)sender {
     NSLog(@"action cancelled");
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

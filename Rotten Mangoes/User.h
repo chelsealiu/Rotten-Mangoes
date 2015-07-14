@@ -17,7 +17,10 @@
 @property (nonatomic) NSInteger pickerDataIndex;
 @property (nonatomic, strong) NSString *userType;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSMutableArray *favouriteMoviesArray;
+@property (nonatomic) BOOL isLoggedIn;
+@property (nonatomic, strong) PFFile *imageFile;
 
+
+//+(id)currentUser;
 
 @end

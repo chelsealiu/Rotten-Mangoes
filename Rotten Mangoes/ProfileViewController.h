@@ -11,7 +11,8 @@
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-//@property (strong, nonatomic) User *detailItem;
+@property (strong, nonatomic) User *userItem;
+@property (strong, nonatomic) NSMutableArray *favouritesItem;
 
 
 @end
