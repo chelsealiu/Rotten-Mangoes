@@ -11,6 +11,8 @@
 #import "MapViewController.h"
 #import "Movies.h"
 #import "Reviews.h"
+#import "User.h"
+#import <Parse/Parse.h>
 
 @interface DetailTableViewController ()
 
@@ -45,9 +47,7 @@
     NSURL *reviewsURL = [NSURL URLWithString:self.detailItem.reviewsAPI];
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:reviewsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *fetchingError) {
-        
-//        if
-        
+                
         NSError *jsonError;
         NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
         
@@ -185,5 +185,22 @@
         [[segue destinationViewController] setDetailItem: sender];
     }
 }
+
+
+- (IBAction)addToFavourites:(Movies*)sender {
+    
+    User *user = [User objectWithClassName:@"User"];
+    [user.favouriteMoviesArray addObject:self.detailItem];
+    NSLog(@"%@", user.favouriteMoviesArray);
+    
+}
+
+
+
+
+
+
+
+
 
 @end

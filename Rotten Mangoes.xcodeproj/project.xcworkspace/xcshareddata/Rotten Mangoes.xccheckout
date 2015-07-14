@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>BC6E6C51-DFAD-4535-900F-64A2767FD7DD</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Rotten Mangoes</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5A1D97D0C3924E6DD1BE1367880867A07D3A8623</key>
 		<string>https://github.com/chelsealiu/Rotten-Mangoes.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Rotten Mangoes.xcodeproj/project.xcworkspace</string>
+	<string>Rotten Mangoes.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5A1D97D0C3924E6DD1BE1367880867A07D3A8623</key>

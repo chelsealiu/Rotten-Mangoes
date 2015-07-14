@@ -28,7 +28,6 @@
 - (void)setDetailItem:(Movies*)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        
     }
 }
 
@@ -75,9 +74,7 @@
         self.setInitialLocation = YES; //make sure this is only called once
         MKCoordinateRegion region = MKCoordinateRegionMake(currentLocation.coordinate, MKCoordinateSpanMake(0.01, 0.01));
         [self.mapView setRegion:region animated:YES];
-    
-    //reverse geocode to get postal code!
-    
+        
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         
@@ -86,7 +83,7 @@
             return;
         } else {
             CLPlacemark *placemark = [[CLPlacemark alloc] initWithPlacemark:[placemarks lastObject]];
-            self.zipCode = [placemark postalCode]; //inside a block: why can you only assign values to properties and not local variables?
+            self.zipCode = [placemark postalCode];
             [self loadTheatreAddresses];
             
             }

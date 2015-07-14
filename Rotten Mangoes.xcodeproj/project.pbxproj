@@ -23,6 +23,23 @@
 		5E6B04741B459BCC00AAA2FE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6B04731B459BCC00AAA2FE /* MapKit.framework */; };
 		5E6B04761B459F6400AAA2FE /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B04751B459F6400AAA2FE /* Location.gpx */; };
 		5E6B04781B46E62400AAA2FE /* theatre_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B04771B46E62400AAA2FE /* theatre_pin.png */; };
+		5EDC94A31B5420FF007C0EE8 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC94A21B5420FF007C0EE8 /* SignUpViewController.m */; };
+		5EDC94AA1B5422FE007C0EE8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94A41B5422FE007C0EE8 /* Bolts.framework */; };
+		5EDC94AB1B5422FE007C0EE8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94A51B5422FE007C0EE8 /* Parse.framework */; };
+		5EDC94AC1B5422FE007C0EE8 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94A61B5422FE007C0EE8 /* ParseCrashReporting.framework */; };
+		5EDC94AD1B5422FE007C0EE8 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94A71B5422FE007C0EE8 /* ParseFacebookUtils.framework */; };
+		5EDC94AE1B5422FE007C0EE8 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94A81B5422FE007C0EE8 /* ParseFacebookUtilsV4.framework */; };
+		5EDC94AF1B5422FE007C0EE8 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94A91B5422FE007C0EE8 /* ParseUI.framework */; };
+		5EDC94B21B542532007C0EE8 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC94B11B542532007C0EE8 /* ProfileViewController.m */; };
+		5EDC94B51B543DCF007C0EE8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC94B41B543DCF007C0EE8 /* User.m */; };
+		5EDC94B71B545799007C0EE8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94B61B545799007C0EE8 /* CoreData.framework */; };
+		5EDC94BF1B54598F007C0EE8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94BE1B54598F007C0EE8 /* SystemConfiguration.framework */; };
+		5EDC94C11B545998007C0EE8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94C01B545998007C0EE8 /* Security.framework */; };
+		5EDC94C31B5459AD007C0EE8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94C21B5459AD007C0EE8 /* libsqlite3.dylib */; };
+		5EDC94C51B5459EB007C0EE8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94C41B5459EB007C0EE8 /* AudioToolbox.framework */; };
+		5EDC94C71B546805007C0EE8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDC94C61B546805007C0EE8 /* AssetsLibrary.framework */; };
+		5EDC94C91B547433007C0EE8 /* default_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDC94C81B547433007C0EE8 /* default_user.png */; };
+		5EDC94CC1B548C5A007C0EE8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC94CB1B548C5A007C0EE8 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +81,30 @@
 		5E6B04731B459BCC00AAA2FE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5E6B04751B459F6400AAA2FE /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		5E6B04771B46E62400AAA2FE /* theatre_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = theatre_pin.png; sourceTree = "<group>"; };
+		5EDC94A11B5420FF007C0EE8 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		5EDC94A21B5420FF007C0EE8 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		5EDC94A41B5422FE007C0EE8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		5EDC94A51B5422FE007C0EE8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		5EDC94A61B5422FE007C0EE8 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		5EDC94A71B5422FE007C0EE8 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		5EDC94A81B5422FE007C0EE8 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		5EDC94A91B5422FE007C0EE8 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		5EDC94B01B542532007C0EE8 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		5EDC94B11B542532007C0EE8 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		5EDC94B31B543DCF007C0EE8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5EDC94B41B543DCF007C0EE8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5EDC94B61B545799007C0EE8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5EDC94B81B5458DC007C0EE8 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		5EDC94BA1B5458E7007C0EE8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5EDC94BC1B545908007C0EE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5EDC94BE1B54598F007C0EE8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5EDC94C01B545998007C0EE8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5EDC94C21B5459AD007C0EE8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5EDC94C41B5459EB007C0EE8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5EDC94C61B546805007C0EE8 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5EDC94C81B547433007C0EE8 /* default_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_user.png; sourceTree = "<group>"; };
+		5EDC94CA1B548C5A007C0EE8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		5EDC94CB1B548C5A007C0EE8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +112,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EDC94C71B546805007C0EE8 /* AssetsLibrary.framework in Frameworks */,
+				5EDC94C51B5459EB007C0EE8 /* AudioToolbox.framework in Frameworks */,
+				5EDC94C31B5459AD007C0EE8 /* libsqlite3.dylib in Frameworks */,
+				5EDC94C11B545998007C0EE8 /* Security.framework in Frameworks */,
+				5EDC94BF1B54598F007C0EE8 /* SystemConfiguration.framework in Frameworks */,
+				5EDC94B71B545799007C0EE8 /* CoreData.framework in Frameworks */,
 				5E6B04741B459BCC00AAA2FE /* MapKit.framework in Frameworks */,
+				5EDC94AB1B5422FE007C0EE8 /* Parse.framework in Frameworks */,
+				5EDC94AF1B5422FE007C0EE8 /* ParseUI.framework in Frameworks */,
+				5EDC94AE1B5422FE007C0EE8 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				5EDC94AA1B5422FE007C0EE8 /* Bolts.framework in Frameworks */,
+				5EDC94AD1B5422FE007C0EE8 /* ParseFacebookUtils.framework in Frameworks */,
+				5EDC94AC1B5422FE007C0EE8 /* ParseCrashReporting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +141,21 @@
 		5E6B041D1B443CB300AAA2FE = {
 			isa = PBXGroup;
 			children = (
+				5EDC94C61B546805007C0EE8 /* AssetsLibrary.framework */,
+				5EDC94C41B5459EB007C0EE8 /* AudioToolbox.framework */,
+				5EDC94C21B5459AD007C0EE8 /* libsqlite3.dylib */,
+				5EDC94C01B545998007C0EE8 /* Security.framework */,
+				5EDC94BE1B54598F007C0EE8 /* SystemConfiguration.framework */,
+				5EDC94BC1B545908007C0EE8 /* Foundation.framework */,
+				5EDC94BA1B5458E7007C0EE8 /* QuartzCore.framework */,
+				5EDC94B81B5458DC007C0EE8 /* CoreImage.framework */,
+				5EDC94B61B545799007C0EE8 /* CoreData.framework */,
+				5EDC94A41B5422FE007C0EE8 /* Bolts.framework */,
+				5EDC94A51B5422FE007C0EE8 /* Parse.framework */,
+				5EDC94A61B5422FE007C0EE8 /* ParseCrashReporting.framework */,
+				5EDC94A71B5422FE007C0EE8 /* ParseFacebookUtils.framework */,
+				5EDC94A81B5422FE007C0EE8 /* ParseFacebookUtilsV4.framework */,
+				5EDC94A91B5422FE007C0EE8 /* ParseUI.framework */,
 				5E6B04731B459BCC00AAA2FE /* MapKit.framework */,
 				5E6B04281B443CB300AAA2FE /* Rotten Mangoes */,
 				5E6B04451B443CB300AAA2FE /* Rotten MangoesTests */,
@@ -109,12 +177,22 @@
 			children = (
 				5E6B042D1B443CB300AAA2FE /* AppDelegate.h */,
 				5E6B042E1B443CB300AAA2FE /* AppDelegate.m */,
-				5E6B04581B44559500AAA2FE /* CustomCell.h */,
-				5E6B04591B44559500AAA2FE /* CustomCell.m */,
+				5EDC94CA1B548C5A007C0EE8 /* LoginViewController.h */,
+				5EDC94CB1B548C5A007C0EE8 /* LoginViewController.m */,
+				5EDC94A11B5420FF007C0EE8 /* SignUpViewController.h */,
+				5EDC94A21B5420FF007C0EE8 /* SignUpViewController.m */,
+				5EDC94B01B542532007C0EE8 /* ProfileViewController.h */,
+				5EDC94B11B542532007C0EE8 /* ProfileViewController.m */,
+				5EDC94B31B543DCF007C0EE8 /* User.h */,
+				5EDC94B41B543DCF007C0EE8 /* User.m */,
 				5E6B04551B44530600AAA2FE /* CollectionViewController.h */,
 				5E6B04561B44530600AAA2FE /* CollectionViewController.m */,
+				5E6B04581B44559500AAA2FE /* CustomCell.h */,
+				5E6B04591B44559500AAA2FE /* CustomCell.m */,
 				5E6B045E1B44722100AAA2FE /* DetailTableViewController.h */,
 				5E6B045F1B44722100AAA2FE /* DetailTableViewController.m */,
+				5E6B04641B448B8100AAA2FE /* TableViewCell.h */,
+				5E6B04651B448B8100AAA2FE /* TableViewCell.m */,
 				5E6B04701B458EBC00AAA2FE /* MapViewController.h */,
 				5E6B04711B458EBC00AAA2FE /* MapViewController.m */,
 				5E6B04611B44870400AAA2FE /* Reviews.h */,
@@ -124,9 +202,8 @@
 				5E6B04521B44411800AAA2FE /* Movies.h */,
 				5E6B04531B44411800AAA2FE /* Movies.m */,
 				5E6B04361B443CB300AAA2FE /* Main.storyboard */,
-				5E6B04641B448B8100AAA2FE /* TableViewCell.h */,
-				5E6B04651B448B8100AAA2FE /* TableViewCell.m */,
 				5E6B04391B443CB300AAA2FE /* Images.xcassets */,
+				5EDC94C81B547433007C0EE8 /* default_user.png */,
 				5E6B043B1B443CB300AAA2FE /* LaunchScreen.xib */,
 				5E6B04291B443CB300AAA2FE /* Supporting Files */,
 			);
@@ -241,6 +318,7 @@
 			files = (
 				5E6B04381B443CB300AAA2FE /* Main.storyboard in Resources */,
 				5E6B043D1B443CB300AAA2FE /* LaunchScreen.xib in Resources */,
+				5EDC94C91B547433007C0EE8 /* default_user.png in Resources */,
 				5E6B04761B459F6400AAA2FE /* Location.gpx in Resources */,
 				5E6B04781B46E62400AAA2FE /* theatre_pin.png in Resources */,
 				5E6B043A1B443CB300AAA2FE /* Images.xcassets in Resources */,
@@ -263,11 +341,15 @@
 			files = (
 				5E6B04601B44722100AAA2FE /* DetailTableViewController.m in Sources */,
 				5E6B04631B44870400AAA2FE /* Reviews.m in Sources */,
+				5EDC94CC1B548C5A007C0EE8 /* LoginViewController.m in Sources */,
 				5E6B042F1B443CB300AAA2FE /* AppDelegate.m in Sources */,
 				5E6B04721B458EBC00AAA2FE /* MapViewController.m in Sources */,
 				5E6B04571B44530600AAA2FE /* CollectionViewController.m in Sources */,
 				5E6B045A1B44559500AAA2FE /* CustomCell.m in Sources */,
+				5EDC94A31B5420FF007C0EE8 /* SignUpViewController.m in Sources */,
 				5E6B04661B448B8100AAA2FE /* TableViewCell.m in Sources */,
+				5EDC94B51B543DCF007C0EE8 /* User.m in Sources */,
+				5EDC94B21B542532007C0EE8 /* ProfileViewController.m in Sources */,
 				5E6B04541B44411800AAA2FE /* Movies.m in Sources */,
 				5E6B042C1B443CB300AAA2FE /* main.m in Sources */,
 			);
@@ -395,6 +477,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Rotten Mangoes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -405,6 +491,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Rotten Mangoes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

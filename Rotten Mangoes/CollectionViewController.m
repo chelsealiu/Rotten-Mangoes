@@ -11,6 +11,8 @@
 #import "Movies.h"
 #import "CustomCell.h"
 #import "MapViewController.h"
+#import "ProfileViewController.h"
+#import "SignUpViewController.h"
 
 @interface CollectionViewController ()
 
@@ -102,7 +104,7 @@
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
         Movies *movie = self.objects[indexPath.row];
         [[segue destinationViewController] setDetailItem: movie];
-    }
+    } 
 }
 
 #pragma mark - Collection View
@@ -138,7 +140,7 @@
         
         customCell.movieImageView.image = [UIImage imageWithData:imageData];
     });
-    
+
     return customCell;
     
 }

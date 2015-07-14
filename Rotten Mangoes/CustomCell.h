@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomCell : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *movieImageView;
 
