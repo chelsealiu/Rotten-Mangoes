@@ -159,13 +159,14 @@
     return 4;
 }
 
-- (IBAction)goToProfile:(id)sender {
-    
-    for (UIViewController*vc in [self.navigationController viewControllers]) {
-        if ([vc isKindOfClass: [ProfileViewController class]]){
-            [[self navigationController] popToViewController:vc animated:YES];
-        }
-    }
-}
+
+//- (IBAction)goToProfile:(id)sender {
+//    
+//    for (UIViewController*vc in [self.navigationController viewControllers]) {
+//        if ([vc isKindOfClass: [ProfileViewController class]]){
+//            [[self navigationController] popToViewController:vc animated:YES];
+//        }
+//    }
+//}
 
 @end

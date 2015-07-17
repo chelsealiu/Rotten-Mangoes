@@ -21,38 +21,34 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+
 @end
 
 @implementation ProfileViewController
 
 
-//pass in username as a string
+-(void)viewWillAppear:(BOOL)animated {
 
-- (void)setUserItem:(User*)newDetailItem {
-    if (_userItem != newDetailItem) {
-        _userItem = newDetailItem;
-        
-    }
-}
-
-- (void)setFavouritesItem:(NSMutableArray*)newDetailItem {
-    if (_favouritesItem != newDetailItem) {
-        _favouritesItem = newDetailItem;
-        
-    }
+    [self.navigationController setToolbarHidden:YES];
+    [self updateFavouritesArray];
+    [self.tableView reloadData];
+    
 }
 
 
 -(void)viewDidLoad {
     
     [super viewDidLoad];
-    [self.navigationController setToolbarHidden:YES];
 
     self.navigationItem.hidesBackButton = YES;
-//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.tableView.delegate = self;
+    
+    [self updateFavouritesArray];
+}
 
-    User *currentUser = [[User alloc] init];//implementing singleton method
-    currentUser = self.userItem; //passed in User object from login screen
+-(void) updateFavouritesArray {
+    User *currentUser = [User currentUser];//implementing singleton method
     
     self.usernameLabel.text = currentUser.username;
     self.userTypeLabel.text = currentUser.userType;
@@ -61,35 +57,35 @@
             self.profileImageView.image = [UIImage imageWithData:data];
         }
     }];
-    NSLog(@"username: %@, pswd: %@", currentUser.username, currentUser.userType);
-
+    NSLog(@"username: %@, pswd: %@, fav: %@", currentUser.username, currentUser.userType, currentUser.favouritesArray);
+    
 }
+
 
 - (IBAction)logoutAction:(id)sender {
     
     [self.navigationController popToRootViewControllerAnimated:YES];
-    self.userItem.isLoggedIn = NO; //logged out
+    [User logOutInBackground];
     
 }
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showMovies"]) {
-        [[segue destinationViewController] setDetailItem:self.userItem];
-    }
-    
-    
-}
+//
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([[segue identifier] isEqualToString:@"showMovies"]) {
+//        [[segue destinationViewController] setDetailItem:self.userItem];
+//    }
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FavouriteCell" forIndexPath:indexPath];
-    
-    Movies *tempMovieObject = [[Movies alloc] init];
-    tempMovieObject = self.favouritesItem[indexPath.row];
-    cell.textLabel.text = tempMovieObject.title;
-    
+    User *currentUser = [User currentUser];
+    cell.textLabel.text = currentUser.favouritesArray[indexPath.row];
     return cell;
+}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
 }
      
 
@@ -100,7 +96,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.favouritesItem.count; //change to number of movies favourited
+    User *currentUser = [User currentUser];
+    return [currentUser.favouritesArray count]; //change to number of movies favourited
     
 }
 
@@ -111,11 +108,17 @@
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    User *currentUser = [User currentUser];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-    }
+        [currentUser.favouritesArray removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+}
 }
 
+
+-(IBAction)unwindToProfile:(UIStoryboardSegue*)sender {
+    //unwind segue
+}
 
 
 @end

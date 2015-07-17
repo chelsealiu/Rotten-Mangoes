@@ -93,45 +93,70 @@
     
     //can you initialize the singleton here?
     
-    User *newUser = [[User alloc] init];
+    User *newUser = [User object]; //returns instance of class
+    newUser.favouritesArray = [NSMutableArray array];
     newUser.username = self.usernameTextfield.text;
     newUser.pickerDataIndex = [self.pickerView selectedRowInComponent:0];
     newUser.userType = self.pickerData[newUser.pickerDataIndex];
     newUser.password = self.passwordTextfield.text;
-//    newUser.userImage = self.imageView.image; -> crashing
     
     NSData* data = UIImageJPEGRepresentation(self.imageView.image, 0.5f);
     newUser.imageFile = [PFFile fileWithName:@"Image.jpg" data:data];
     
-    // Save the image to Parse
-    [newUser.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // The image has now been uploaded to Parse. Associate it with a new object
-           
-            [newUser setObject:newUser.imageFile forKey:@"image"];
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    
+        if (error.code == 202) {
+            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Error"
+                                                             message:@"Account already exists."
+                                                            delegate:self
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles: nil];
+            [alert show];
             
-            [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    NSLog(@"Saved");
-                }
-                else{
-                    // Error
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }
-            }];
+        } else if (error) {
+            
+            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Error"
+                                                             message:error.description
+                                                            delegate:self
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles: nil];
+            [alert show];
+
+        } else if (succeeded) {
+            
+            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Congrats!"
+                                                             message:error.description
+                                                            delegate:self
+                                                   cancelButtonTitle:@"You have successfully made a new account."
+                                                   otherButtonTitles: nil];
+            [alert show];
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
-    }];
     
-    [newUser saveEventually];
+    }]; //use block version for error checking
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    // Save the image to Parse
+//    [newUser.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            // The image has now been uploaded to Parse. Associate it with a new object
+//           
+//            [newUser setObject:newUser.imageFile forKey:@"image"];
+//            
+//            [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                if (!error) {
+//                    NSLog(@"Saved");
+//                }
+//                else{
+//                    // Error
+//                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+//                }
+//            }];
+//        }
+//    }];
     
-    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Congrats!"
-                                                     message:@"You have created a new account."
-                                                    delegate:self
-                                           cancelButtonTitle:@"OK"
-                                           otherButtonTitles: nil];
-    [alert show];
+//    [newUser saveEventually];
+
 
     
     NSLog(@"name: %@, user type: %@, profile image: %@", newUser.username, newUser.userType, newUser.userImage);

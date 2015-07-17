@@ -10,17 +10,14 @@
 #import <Parse/Parse.h>
 
 
-@interface User : PFObject <PFSubclassing>
+@interface User : PFUser <PFSubclassing>
 
-@property (nonatomic, strong) NSString *username;
+
 @property (nonatomic, strong) UIImage *userImage;
 @property (nonatomic) NSInteger pickerDataIndex;
 @property (nonatomic, strong) NSString *userType;
-@property (nonatomic, strong) NSString *password;
-@property (nonatomic) BOOL isLoggedIn;
 @property (nonatomic, strong) PFFile *imageFile;
+@property (nonatomic, strong) NSMutableArray *favouritesArray;
 
-
-//+(id)currentUser;
 
 @end

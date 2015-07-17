@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "Movies.h"
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) User *userItem;
-@property (strong, nonatomic) NSMutableArray *favouritesItem;
+@property (strong, nonatomic) Movies *favouritesItem;
+-(IBAction)unwindToProfile:(UIStoryboardSegue*)sender;
 
 
 @end

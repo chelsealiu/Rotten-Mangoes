@@ -10,18 +10,16 @@
 
 @implementation User
 
-@dynamic username;
 @dynamic userImage;
 @dynamic pickerDataIndex;
 @dynamic userType;
-@dynamic password;
-@dynamic isLoggedIn;
 @dynamic imageFile;
+@dynamic favouritesArray;
 
-+(NSString * __nonnull)parseClassName {
-    
-    return @"User";
-}
+//+(NSString * __nonnull)parseClassName {
+//    
+//    return @"User";
+//}
 
 +(void)load {
     

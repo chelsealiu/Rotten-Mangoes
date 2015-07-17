@@ -17,7 +17,5 @@
 @property (nonatomic, strong) NSString *movieSynopsis;
 @property (nonatomic, strong) NSNumber *criticsScore;
 @property (nonatomic, strong) NSString *freshnessOfMovie;
-@property (nonatomic) BOOL isFavourite;
-
 
 @end

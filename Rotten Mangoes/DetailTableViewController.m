@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *detailMovieImage;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *heartButton;
-@property (strong, nonatomic) NSMutableArray *favouriteMovies;
 
 @end
 
@@ -42,7 +41,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     [self.navigationController setToolbarHidden:NO];
-    self.favouriteMovies = [[NSMutableArray alloc] init];
     
     if ([self.detailItem.movieReviewsArray count] != 0) {
         [self setTableViewLabel];
@@ -193,29 +191,25 @@
 }
 - (IBAction)addToFavourites:(id)sender {
     
-    NSLog(@"tapped heart button");
-    if (self.detailItem.isFavourite) {
-        return;
+    User *currentUser = [User currentUser];
+    
+    if ([currentUser.favouritesArray containsObject:self.detailItem.title]) {
+        [self.heartButton setTintColor:nil];
+        [currentUser.favouritesArray removeObject:self.detailItem.title];
+
+    } else {
+        [self.heartButton setTintColor:[UIColor redColor]];
+        [currentUser.favouritesArray addObject:self.detailItem.title];
+
     }
     
-    [self.favouriteMovies addObject:self.detailItem];
-    [self.heartButton setTintColor:[UIColor redColor]];
-    
-
+    [currentUser saveInBackground]; //save change to user item
 }
 
 - (IBAction)goToProfile:(id)sender {
     
-    for (ProfileViewController *vc in [self.navigationController viewControllers]) {
-        
-        if ([vc isKindOfClass: [ProfileViewController class]]){
-            [vc setFavouritesItem:self.favouriteMovies];
-
-            [[self navigationController] popToViewController:vc animated:YES];
-        }
-    }
     
-    NSLog(@"%@", [self.navigationController viewControllers]);
+    
 }
 
 
